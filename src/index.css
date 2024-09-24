@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+.vide {
+  position: relative;
+  overflow: hidden;
+  height: 100vh; /* Full viewport height */
+}
+
+.background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1; /* Keep it behind other elements */
+  transform: translate(-50%, -50%);
+}
+
+.vide_content {
+  position: relative;
+  z-index: 1; /* Bring content in front of the video */
+  color: white; /* Change text color for visibility */
+  text-align: center; /* Center align text */
+}
