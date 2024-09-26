@@ -38,3 +38,8 @@ code {
   color: white; /* Change text color for visibility */
   text-align: center; /* Center align text */
 }
+
+.NumberOfExoplanetCardContainer{
+  display: flex;
+  ;
+}

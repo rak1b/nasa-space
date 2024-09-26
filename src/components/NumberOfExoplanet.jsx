@@ -1,4 +1,3 @@
-// src/components/Footer.jsx
 import React from 'react';
 
 function Footer() {
@@ -9,10 +8,10 @@ function Footer() {
         <div className="well4">
           <div className="container center">
             <hr />
-            <h2>Professional web performance</h2>
-            <h3>Creating something special for each customer</h3>
-            <a className="btn" href="#">
-              Get Started Now!
+            <h2>Over 5,500 Exoplanets Discovered!</h2>
+            <h3>Explore the vast universe beyond our Solar System</h3>
+            <a className="btn" href="/all_exoplanet" target="_blank" rel="noopener noreferrer">
+              See All Exoplanets
             </a>
             <div className="copyright">
               © {new Date().getFullYear()} Your Logo. All Rights Reserved
