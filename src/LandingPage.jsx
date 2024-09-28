@@ -17,6 +17,9 @@ import SingleExoplanet from './components/SingleExoplanet';
 import NumberOfExoplanetCard from './components/NumberOfExoplanet';
 import BelowHeader from './components/BelowHeader';
 import HowManyExoplanet from './components/HowManyExoplanet';
+import ExoplanetVisualizer from './components/ExoplanetVisualizer';
+import ExoplanetEducation from './components/ExoplanetEducation';
+import AppFooter from './components/AppFooter';
 
 function LandingPage() {
   return (
@@ -28,6 +31,9 @@ function LandingPage() {
       {/* <MultipleGlobes />
       <NumberOfExoplanetCard /> */}
       <HowManyExoplanet/>
+      {/* <ExoplanetVisualizer/> */}
+      <ExoplanetEducation/>
+      <AppFooter/>
     </div>
   );
 }

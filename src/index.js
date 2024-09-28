@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS for Carousel functionality
 import NotFound from './components/NotFound';
 import AllExoplanets from './components/AllExoplanets';
+import ExoplanetVisualizer from './components/ExoplanetVisualizer';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -18,7 +19,7 @@ root.render(
       <Routes>
         {/* Define your routes here */}
         <Route path="/" element={<LandingPage />} />
-        <Route path="/exoplanets" element={<AllExoplanets />} />
+        <Route path="/exoplanets" element={<ExoplanetVisualizer />} />
         {/* Add more routes as needed */}
         <Route path="*" element={<NotFound />} /> {/* 404 Not Found route */}
       </Routes>

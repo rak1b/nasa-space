@@ -1,0 +1,90 @@
+/* src/AppFooter.css */
+
+/* Footer Styles */
+.app-footer {
+  background-color: #000011;
+  color: #ffffff;
+  padding: 40px 0;
+  border-top: 1px solid #00ffff;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  color: #00ffff;
+  margin: 0 15px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  position: relative;
+}
+
+.footer-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #00ffff;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+.footer-quote {
+  font-size: 1.25rem;
+  color: #cccccc;
+  margin-top: 20px;
+  font-style: italic;
+}
+
+.footer-quote span {
+  display: block;
+  margin-top: 5px;
+  font-size: 1rem;
+  color: #00cccc;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+}
+
+.social-link {
+  color: #00ffff;
+  font-size: 2rem;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: transform 0.3s;
+}
+
+.social-link:hover {
+  transform: scale(1.2);
+}
+
+.footer-credit {
+  font-size: 0.9rem;
+  color: #666666;
+}
+
+@media (max-width: 576px) {
+  .footer-link {
+    margin: 10px;
+  }
+
+  .footer-quote {
+    font-size: 1rem;
+  }
+
+  .social-link {
+    font-size: 1.5rem;
+  }
+}
