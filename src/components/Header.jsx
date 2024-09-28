@@ -27,9 +27,9 @@ function Header() {
           <p className="brand_slogan">NASA Space Apps Challenge</p>
         </div>
 
-        <h2>Professional web performance</h2>
+        <h2>Welcome to the Fascinating World of Exoplanets! 🌟</h2>
 
-        <h3>Creating something special for each customer</h3>
+        <h3>Are you ready to explore worlds beyond our Solar System? 🌍✨ Our site is your gateway to discovering exoplanets—planets that orbit stars far away in distant galaxies.</h3>
 
 
       </div>
