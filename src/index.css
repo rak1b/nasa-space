@@ -14,6 +14,29 @@ code {
 
 
 
+.navbar {
+  background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+  transition: background-color 0.3s ease;
+}
+
+.navbar .nav-link {
+  color: white; /* White text color */
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #f0f0f0; /* Slightly lighter on hover */
+}
+
+.navbar-toggler-icon {
+  filter: invert(1); /* To make the hamburger icon white */
+}
+
+.navbar-brand {
+  color: white; /* White text for brand name */
+}
+
+/* Video and Content Styling */
 .vide {
   position: relative;
   overflow: hidden;
@@ -35,11 +58,19 @@ code {
 .vide_content {
   position: relative;
   z-index: 1; /* Bring content in front of the video */
-  color: white; /* Change text color for visibility */
+  color: white; /* Ensure text is visible over video */
   text-align: center; /* Center align text */
+  padding: 20px; /* Add some padding for better spacing */
 }
 
 .NumberOfExoplanetCardContainer{
   display: flex;
-  ;
+  
+}
+
+.what_exoplanet{
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 60px;
+  color: #FFF;
 }

@@ -5,7 +5,8 @@ import '../assets/css/ExoplanetEducation.css'; // Custom CSS for styling
 
 const ExoplanetEducation = () => {
   return (
-    <div className="exoplanet-education py-5">
+    <section id="why_exoplanet">
+    <div className="exoplanet-education py-5 ">
       <div className="container">
         <div className="text-center mb-5 mt-5">
           <h2 className="section-title">Why You Should Learn About Exoplanets</h2>
@@ -93,6 +94,7 @@ const ExoplanetEducation = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 

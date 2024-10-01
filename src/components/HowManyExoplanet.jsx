@@ -3,9 +3,9 @@ import ExoplanetSystem from "./ExoplanetGlobe";
 import NumberOfExoplanet from "./NumberOfExoplanet";
 
 const HowManyExoplanet = () => {
-
   return (
     <section
+      id="how_many_exoplanet"
       className="d-flex align-items-center"
       style={{
         height: "100vh",
@@ -14,15 +14,18 @@ const HowManyExoplanet = () => {
         padding: "2rem",
       }}
     >
-      <div className="container h-100"> {/* Added 'h-100' class */}
-        <div className="row align-items-center h-100"> {/* Added 'h-100' class */}
+      <div className="container h-100">
+        <div className="row align-items-center h-100">
           {/* Left side: Exoplanet System */}
-          <div className="col-md-6 h-100" style={{ position: 'relative' }}> {/* Added 'h-100' class and 'position: relative' */}
+          <div
+            className="col-lg-6 col-md-12 mb-4 mb-lg-0"
+            style={{ position: "relative", height: "50vh" }}
+          >
             <ExoplanetSystem />
           </div>
 
           {/* Right side: Information */}
-          <div className="col-md-6">
+          <div className="col-lg-6 col-md-12">
             <NumberOfExoplanet />
           </div>
         </div>

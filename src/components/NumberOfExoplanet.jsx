@@ -11,8 +11,9 @@ function NumberOfExoplanet() {
         backgroundAttachment: 'fixed',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        height: '100vh',
+        height: '100%',
         color: 'white',
+        overflow: 'hidden', // Ensures the content doesn't overflow the section
       }}
     >
       {/* Overlay for better text readability */}
@@ -22,10 +23,18 @@ function NumberOfExoplanet() {
           top: 0,
           left: 0,
           backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          zIndex: 1, // Ensure overlay is behind the content
         }}
       ></div>
 
-      <div className="container position-relative">
+      <div
+        className="container position-relative"
+        style={{
+          zIndex: 2, // Ensure content is above the overlay
+          maxWidth: '800px', // Ensure the container doesn't grow too wide on large screens
+          padding: '2rem', // Add padding to ensure proper spacing
+        }}
+      >
         <h1 className="display-4 mb-4">Over 5,500 Exoplanets Discovered!</h1>
         <p className="lead mb-5">
           Embark on a journey to explore the vast universe beyond our Solar System.

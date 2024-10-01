@@ -4,6 +4,9 @@ FROM node:18-alpine AS build
 # Set the working directory inside the container
 WORKDIR /app
 
+# Update NPM to the latest version
+RUN npm install -g npm@10.8.3
+
 # Copy package.json and package-lock.json to leverage Docker cache
 COPY package*.json ./
 

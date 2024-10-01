@@ -30,9 +30,10 @@ function LandingPage() {
       {/* <SingleExoplanet /> */}
       {/* <MultipleGlobes />
       <NumberOfExoplanetCard /> */}
-      <HowManyExoplanet/>
       {/* <ExoplanetVisualizer/> */}
       <ExoplanetEducation/>
+      <HowManyExoplanet/>
+
       <AppFooter/>
     </div>
   );

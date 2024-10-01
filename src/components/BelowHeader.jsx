@@ -36,6 +36,7 @@ const exoplanets = [
 const BelowHeader = () => {
   return (
     <section
+      id="what_is_exoplanet_section"
       className="d-flex align-items-center"
       style={{
         height: "100vh",
@@ -49,7 +50,7 @@ const BelowHeader = () => {
       <div className="container">
         <div className="row align-items-center">
           <div className="col-md-6">
-            <h2>What is an Exoplanet?</h2>
+            <h2 className="what_exoplanet">What is an Exoplanet?</h2>
             <p>
               An exoplanet is a planet that orbits a star outside of our solar system. Since the discovery of the first exoplanet in the 1990s,
               thousands have been identified, with new ones being found regularly. Some of these exoplanets might even have the right conditions
