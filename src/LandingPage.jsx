@@ -23,7 +23,7 @@ import AppFooter from './components/AppFooter';
 import ExoplanetArchitect from './components/ExoplanetArchitect';
 function LandingPage() {
   return (
-    <div className="page">
+    <div className="">
       <Header />
       <BelowHeader />
       {/* <ExoplanetArchitect/> */}
