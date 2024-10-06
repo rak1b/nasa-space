@@ -20,12 +20,13 @@ import HowManyExoplanet from './components/HowManyExoplanet';
 import ExoplanetVisualizer from './components/ExoplanetVisualizer';
 import ExoplanetEducation from './components/ExoplanetEducation';
 import AppFooter from './components/AppFooter';
-
+import ExoplanetArchitect from './components/ExoplanetArchitect';
 function LandingPage() {
   return (
     <div className="page">
       <Header />
       <BelowHeader />
+      {/* <ExoplanetArchitect/> */}
       {/* <MainContent /> */}
       {/* <SingleExoplanet /> */}
       {/* <MultipleGlobes />

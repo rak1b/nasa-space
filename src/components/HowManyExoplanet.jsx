@@ -8,7 +8,7 @@ const HowManyExoplanet = () => {
       id="how_many_exoplanet"
       className="d-flex align-items-center"
       style={{
-        height: "100vh",
+        height: "100%",
         backgroundColor: "#000011", // Dark space-like color
         color: "white",
         padding: "2rem",

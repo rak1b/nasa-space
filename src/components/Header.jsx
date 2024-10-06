@@ -14,7 +14,7 @@ function Header() {
       </video>
 
       {/* Transparent Navbar */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-transparent fixed-top">
+      {/* <nav className="navbar navbar-expand-lg navbar-light bg-transparent fixed-top">
         <div className="container-fluid">
           <a className="navbar-brand text-white" href="./">
             <img src={logo} alt="Logo" width="30" height="30" className="d-inline-block align-top" />
@@ -68,7 +68,7 @@ function Header() {
             </ul>
           </div>
         </div>
-      </nav>
+      </nav> */}
 
       <div className="container vide_content">
         <div className="brand">
@@ -84,6 +84,7 @@ function Header() {
           Are you ready to explore worlds beyond our Solar System? 🌍✨ Our site is your gateway to discovering exoplanets—planets that orbit stars
           far away in distant galaxies.
         </h3>
+        <Link to="/app" className="btn btn-lg btn-outline-info">Let's Explore</Link>
       </div>
     </header>
   );

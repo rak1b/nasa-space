@@ -39,7 +39,7 @@ const BelowHeader = () => {
       id="what_is_exoplanet_section"
       className="d-flex align-items-center"
       style={{
-        height: "100vh",
+        height: "100%",
         backgroundColor: "#00001a",
         color: "white",
         backgroundImage:

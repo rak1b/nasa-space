@@ -74,3 +74,61 @@ code {
   line-height: 60px;
   color: #FFF;
 }
+
+
+.game-setup, .game-board {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.game-setup button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.player-info {
+  margin-bottom: 20px;
+}
+
+.exoplanets {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.planet {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px;
+  width: 200px;
+}
+
+.resources button {
+  margin: 5px;
+  padding: 5px 10px;
+}
+.planet-visualization {
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.planet {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.container-fluid {
+  padding: 0;
+}
