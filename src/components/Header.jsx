@@ -169,7 +169,7 @@ function Header() {
           <p className="brand_slogan gradient-text">NASA Space Apps Challenge</p>
         </div>
 
-        <h2 className="gradient-text">Welcome to the Fascinating World of Exoplanets! 🌟</h2>
+        <h2 className="gradient-text mt-2">Welcome to the Fascinating World of Exoplanets! 🌟</h2>
         <h3 className="text-white mb-5">
           Are you ready to explore worlds beyond our Solar System? 🌍✨ Our site is your gateway to discovering exoplanets—planets that orbit stars
           far away in distant galaxies.

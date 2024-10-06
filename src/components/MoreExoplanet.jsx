@@ -4,8 +4,8 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import QuizIcon from '@mui/icons-material/Quiz';
 import { styled } from '@mui/material/styles';
 import video1 from '../assets/video/ed_1.mp4';
-import video2 from '../assets/video/ed_1.mp4';
-import video3 from '../assets/video/ed_1.mp4';
+import video2 from '../assets/video/ed_2.mp4';
+import video3 from '../assets/video/ed_3.mp4';
 
 const StyledCard = styled(Card)(({ theme, bgcolor }) => ({
   background: bgcolor,
@@ -31,6 +31,8 @@ const MoreExoplanet = () => {
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [openQuizModal, setOpenQuizModal] = useState(false);
   const [answerSubmitted, setAnswerSubmitted] = useState(false);
+  const [quizQuestions, setQuizQuestions] = useState([]);
+  const [quizReady, setQuizReady] = useState(false);
 
   const videos = [
     {
@@ -54,32 +56,91 @@ const MoreExoplanet = () => {
       url: video3,
       bgcolor: 'linear-gradient(135deg, #84fab0, #8fd3f4)',
     },
-    {
-      id: 4,
-      title: "Exoplanet Habitability",
-      description: "Learn about the factors that make an exoplanet habitable for life.",
-      url: video3,
-      bgcolor: 'linear-gradient(135deg, #ffecd2, #fcb69f)',
-    },
   ];
 
   const questions = [
     {
-      question: "What is the most common method for detecting exoplanets?",
-      options: ["Direct imaging", "Transit method", "Radial velocity method", "Gravitational microlensing"],
-      correctAnswer: "Transit method"
+      question: "What is the approximate size of Kepler-62F compared to Earth?",
+      options: ["20% larger", "40% larger", "60% larger", "80% larger"],
+      correctAnswer: "40% larger"
     },
     {
-      question: "Which type of exoplanet is often referred to as a 'Super-Earth'?",
-      options: ["Gas giant", "Ice giant", "Terrestrial planet larger than Earth", "Hot Jupiter"],
-      correctAnswer: "Terrestrial planet larger than Earth"
+      question: "How far is Kepler-186F from Earth?",
+      options: ["300 light-years", "500 light-years", "1,200 light-years", "2,700 light-years"],
+      correctAnswer: "500 light-years"
     },
     {
-      question: "What is the 'habitable zone' of a star?",
-      options: ["The area where planets can form", "The region where liquid water can exist on a planet's surface", "The zone where stars are born", "The area where asteroids are most common"],
-      correctAnswer: "The region where liquid water can exist on a planet's surface"
+      question: "In what zone does Kepler-69F orbit its star?",
+      options: ["Ice zone", "Habitable zone", "Dark zone", "Gas zone"],
+      correctAnswer: "Habitable zone"
+    },
+    {
+      question: "How many times larger than Earth is Kepler-22b?",
+      options: ["2 times", "3 times", "1.5 times", "4 times"],
+      correctAnswer: "2 times"
+    },
+    {
+      question: "What is the mass of Gliese 667Cc compared to Earth?",
+      options: ["2.5 times", "3 times", "4.5 times", "6 times"],
+      correctAnswer: "4.5 times"
+    },
+    {
+      question: "What is HD 209458b also known as?",
+      options: ["Neptune", "Osiris", "Orion", "Jupiter II"],
+      correctAnswer: "Osiris"
+    },
+    {
+      question: "51 Pegasi b was the first exoplanet discovered orbiting what type of star?",
+      options: ["Red Dwarf", "Binary Star", "Sun-like Star", "Supernova"],
+      correctAnswer: "Sun-like Star"
+    },
+    {
+      question: "How far is Proxima Centauri b from Earth?",
+      options: ["4.2 light-years", "6 light-years", "10 light-years", "12 light-years"],
+      correctAnswer: "4.2 light-years"
+    },
+    {
+      question: "How many Earth-sized planets are in the TRAPPIST-1 system?",
+      options: ["3", "5", "7", "9"],
+      correctAnswer: "7"
+    },
+    {
+      question: "What is the estimated surface temperature of K2-18b?",
+      options: ["-50°C", "0°C", "10°C", "50°C"],
+      correctAnswer: "10°C"
+    },
+    {
+      question: "Which exoplanet is nicknamed 'Super Earth'?",
+      options: ["Kepler-452b", "HD 40307g", "Gliese 581g", "TOI 700d"],
+      correctAnswer: "HD 40307g"
+    },
+    {
+      question: "What is unique about PSR B1620-26 b?",
+      options: ["It's a gas giant", "It orbits two stars", "It's the oldest known exoplanet", "It's the smallest exoplanet"],
+      correctAnswer: "It's the oldest known exoplanet"
+    },
+    {
+      question: "Which exoplanet is known for its extreme surface temperatures?",
+      options: ["KELT-9b", "WASP-12b", "HD 189733b", "TrES-2b"],
+      correctAnswer: "KELT-9b"
+    },
+    {
+      question: "What is the estimated age of the exoplanet Methuselah (PSR B1620-26 b)?",
+      options: ["5 billion years", "8 billion years", "10 billion years", "13 billion years"],
+      correctAnswer: "13 billion years"
+    },
+    {
+      question: "Which exoplanet is believed to have a surface covered in burning ice?",
+      options: ["Gliese 436 b", "55 Cancri e", "HD 209458 b", "WASP-12b"],
+      correctAnswer: "Gliese 436 b"
     }
   ];
+
+  // Function to get 5 random questions
+  const getRandomQuestions = (allQuestions, count) => {
+    const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  };
 
   useEffect(() => {
     videos.forEach((video) => {
@@ -111,12 +172,15 @@ const MoreExoplanet = () => {
   };
 
   const handleQuizStart = () => {
+    const selectedQuestions = getRandomQuestions(questions, 5);
+    setQuizQuestions(selectedQuestions);
     setOpenQuizModal(true);
     setCurrentQuestion(0);
     setScore(0);
     setShowScore(false);
     setSelectedAnswer('');
     setAnswerSubmitted(false);
+    setQuizReady(true);
   };
 
   const handleCloseQuizModal = () => {
@@ -129,14 +193,14 @@ const MoreExoplanet = () => {
 
   const handleSubmitAnswer = () => {
     setAnswerSubmitted(true);
-    if (selectedAnswer === questions[currentQuestion].correctAnswer) {
+    if (selectedAnswer === quizQuestions[currentQuestion].correctAnswer) {
       setScore(score + 1);
     }
   };
 
   const handleNextQuestion = () => {
     const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
+    if (nextQuestion < quizQuestions.length) {
       setCurrentQuestion(nextQuestion);
       setSelectedAnswer('');
       setAnswerSubmitted(false);
@@ -247,13 +311,13 @@ const MoreExoplanet = () => {
             maxHeight: '90vh',
             overflowY: 'auto',
           }}>
-            {!showScore ? (
+            {!showScore && quizReady ? (
               <>
                 <Typography variant="h5" gutterBottom sx={{ color: '#4fc3f7' }}>
                   Exoplanet Quiz
                 </Typography>
                 <Typography variant="h6" sx={{ color: 'text.primary', mb: 2 }}>
-                  {questions[currentQuestion].question}
+                  {quizQuestions[currentQuestion].question}
                 </Typography>
                 <FormControl component="fieldset">
                   <RadioGroup
@@ -262,7 +326,7 @@ const MoreExoplanet = () => {
                     value={selectedAnswer}
                     onChange={handleAnswerSelect}
                   >
-                    {questions[currentQuestion].options.map((option, index) => (
+                    {quizQuestions[currentQuestion].options.map((option, index) => (
                       <FormControlLabel
                         key={index}
                         value={option}
@@ -270,7 +334,7 @@ const MoreExoplanet = () => {
                         label={option}
                         sx={{
                           color: answerSubmitted
-                            ? option === questions[currentQuestion].correctAnswer
+                            ? option === quizQuestions[currentQuestion].correctAnswer
                               ? 'green'
                               : option === selectedAnswer
                               ? 'red'
@@ -296,24 +360,24 @@ const MoreExoplanet = () => {
                     onClick={handleNextQuestion}
                     sx={{ mt: 2, backgroundColor: '#4fc3f7', '&:hover': { backgroundColor: '#03a9f4' } }}
                   >
-                    {currentQuestion === questions.length - 1 ? 'Finish Quiz' : 'Next Question'}
+                    {currentQuestion === quizQuestions.length - 1 ? 'Finish Quiz' : 'Next Question'}
                   </Button>
                 )}
                 {answerSubmitted && (
-                  <Typography sx={{ mt: 2, color: selectedAnswer === questions[currentQuestion].correctAnswer ? 'green' : 'red' }}>
-                    {selectedAnswer === questions[currentQuestion].correctAnswer
+                  <Typography sx={{ mt: 2, color: selectedAnswer === quizQuestions[currentQuestion].correctAnswer ? 'green' : 'red' }}>
+                    {selectedAnswer === quizQuestions[currentQuestion].correctAnswer
                       ? 'Correct!'
-                      : `Incorrect. The correct answer is: ${questions[currentQuestion].correctAnswer}`}
+                      : `Incorrect. The correct answer is: ${quizQuestions[currentQuestion].correctAnswer}`}
                   </Typography>
                 )}
               </>
-            ) : (
+            ) : showScore ? (
               <>
                 <Typography variant="h5" gutterBottom sx={{ color: '#4fc3f7' }}>
                   Quiz Complete!
                 </Typography>
                 <Typography variant="h6" sx={{ color: 'text.primary' }}>
-                  You scored {score} out of {questions.length}
+                  You scored {score} out of {quizQuestions.length}
                 </Typography>
                 <Button
                   variant="contained"
@@ -330,6 +394,8 @@ const MoreExoplanet = () => {
                   Close
                 </Button>
               </>
+            ) : (
+              <Typography>Loading quiz...</Typography>
             )}
           </Box>
         </Modal>

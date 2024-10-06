@@ -32,6 +32,7 @@ const ProjectOverview = () => {
 
           <Box mb={4} sx={{
             width: '80%',
+            maxHeight: '60vh', // Add this line
             margin: '0 auto',
             boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
             borderRadius: '8px',
@@ -39,9 +40,10 @@ const ProjectOverview = () => {
           }}>
             <video
               width="100%"
-              height="auto"
+              height="100%" // Change this from 'auto' to '100%'
               controls
               poster="/path/to/your/video-poster.jpg"
+              style={{ objectFit: 'contain' }} // Add this line
             >
               <source src={video1} type="video/mp4" />
               Your browser does not support the video tag.
