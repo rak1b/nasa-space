@@ -39,8 +39,16 @@ function LandingPage() {
   };
 
   return (
-    <div className="relative min-h-screen">
-      <div className="mb-16 w-75  m-auto" style={{  padding: '10px',height: '90vh' }}>
+    <div className="relative min-h-screen" style={{
+      backgroundImage: `url(${process.env.PUBLIC_URL}/bg.webp)`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundColor: 'linear-gradient(135deg, rgba(240, 98, 146, 0.1), rgba(186, 104, 200, 0.1), rgba(100, 181, 246, 0.1), rgba(77, 182, 172, 0.1), rgba(255, 183, 77, 0.1), rgba(129, 199, 132, 0.1)),rgba(1, 5, 15, 0.95)', // Keeping the dark background color
+      backgroundBlendMode: 'overlay', // This will blend the image with the background color
+      color: '#FFFFFF'
+    }}>
+      <div className="mb-16 w-75 m-auto" style={{ padding: '10px', height: '90vh' }}>
         {components[currentComponent]}
       </div>
       <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 2 }}>

@@ -1,5 +1,3 @@
-// src/components/ExoplanetVisualizer.jsx
-
 import React, { Suspense, useState, useRef, useMemo } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OrbitControls, Stars, Html, Ring } from "@react-three/drei";
@@ -7,8 +5,12 @@ import { TextureLoader } from "three";
 import * as THREE from "three";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Button } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
-// Texture Images (Ensure these paths are correct in your project)
+// Texture Images
 import mercuryTextureImage from "../assets/images/textures/mercury.jpg";
 import venusTextureImage from "../assets/images/textures/venus.jpg";
 import earthTextureImage from "../assets/images/textures/earth.jpg";
@@ -34,7 +36,6 @@ const hashString = (str) => {
 
 // Utility: Calculate Position Based on Distance and Hash
 const getPlanetPosition = (planet, scale = 0.1, baseDistance = 30) => {
-  // Increased baseDistance for better spacing
   const distance = parseFloat(planet.distance) * scale + baseDistance; // Apply scaling and base distance
   const nameHash = hashString(planet.name);
 
@@ -51,63 +52,14 @@ const getPlanetPosition = (planet, scale = 0.1, baseDistance = 30) => {
 
 // Solar System Planets Data (Sizes scaled down to be under 1)
 const solarSystemPlanets = [
-  {
-    name: "Mercury",
-    texture: mercuryTextureImage,
-    size: 0.19, // Reduced size: 0.38 * 0.5
-    distance: 5, // Increased distance for better spacing
-    speed: 0.04,
-  },
-  {
-    name: "Venus",
-    texture: venusTextureImage,
-    size: 0.475, // Reduced size: 0.95 * 0.5
-    distance: 7,
-    speed: 0.015,
-  },
-  {
-    name: "Earth",
-    texture: earthTextureImage,
-    size: 0.5, // Reduced size: 1 * 0.5
-    distance: 9,
-    speed: 0.01,
-  },
-  {
-    name: "Mars",
-    texture: marsTextureImage,
-    size: 0.265, // Reduced size: 0.53 * 0.5
-    distance: 11,
-    speed: 0.008,
-  },
-  {
-    name: "Jupiter",
-    texture: jupiterTextureImage,
-    size: 1, // Significantly reduced size: 11.2 * 0.1
-    distance: 15, // Increased distance
-    speed: 0.002,
-  },
-  {
-    name: "Saturn",
-    texture: saturnTextureImage,
-    size: 0.725, // Reduced size: 9.45 * 0.075
-    distance: 19, // Increased distance
-    speed: 0.0015,
-  },
-  {
-    name: "Uranus",
-    texture: uranusTextureImage,
-    size: 0.8, // Reduced size: 4 * 0.2
-    distance: 23, // Increased distance
-    speed: 0.001,
-  },
-  {
-    name: "Neptune",
-    texture: neptuneTextureImage,
-    size: 0.75, // Reduced size: 3.88 * 0.2
-    distance: 27, // Increased distance
-    speed: 0.0008,
-  },
-  // Add more planets or dwarf planets as needed
+  { name: "Mercury", texture: mercuryTextureImage, size: 0.19, distance: 5, speed: 0.04 },
+  { name: "Venus", texture: venusTextureImage, size: 0.475, distance: 7, speed: 0.015 },
+  { name: "Earth", texture: earthTextureImage, size: 0.5, distance: 9, speed: 0.01 },
+  { name: "Mars", texture: marsTextureImage, size: 0.265, distance: 11, speed: 0.008 },
+  { name: "Jupiter", texture: jupiterTextureImage, size: 1, distance: 15, speed: 0.002 },
+  { name: "Saturn", texture: saturnTextureImage, size: 0.725, distance: 19, speed: 0.0015 },
+  { name: "Uranus", texture: uranusTextureImage, size: 0.8, distance: 23, speed: 0.001 },
+  { name: "Neptune", texture: neptuneTextureImage, size: 0.75, distance: 27, speed: 0.0008 },
 ];
 
 // Generic Planet Component
@@ -222,13 +174,13 @@ const ExoplanetVisualizer = () => {
           opacity: 0.8,
         }}
       >
-        <div className="card-body">
-          <h5 className="card-title">Exoplanet Controls</h5>
+        <div className="card-body" style={{ background: 'linear-gradient(135deg, #1a237e, #283593)', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+          <h5 className="card-title" style={{ color: '#ffeb3b', fontWeight: 'bold', marginBottom: '20px' }}>Exoplanet Controls</h5>
 
           {/* Max Distance Input */}
           <form>
-            <div className="form-group">
-              <label htmlFor="maxDistanceInput">Max Distance (light-years):</label>
+            <div className="form-group mb-3">
+              <label htmlFor="maxDistanceInput" style={{ color: '#81d4fa' }}>Max Distance (light-years):</label>
               <input
                 type="number"
                 className="form-control form-control-sm"
@@ -236,15 +188,16 @@ const ExoplanetVisualizer = () => {
                 value={maxDistance}
                 onChange={(e) => {
                   setMaxDistance(Number(e.target.value));
-                  setPage(0); // Reset to first page when filter changes
+                  setPage(0);
                 }}
                 min="0"
+                style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: '1px solid #4fc3f7' }}
               />
             </div>
 
             {/* Search Filter */}
-            <div className="form-group">
-              <label htmlFor="searchQueryInput">Search by Name:</label>
+            <div className="form-group mb-3">
+              <label htmlFor="searchQueryInput" style={{ color: '#81d4fa' }}>Search by Name:</label>
               <input
                 type="text"
                 className="form-control form-control-sm"
@@ -252,23 +205,40 @@ const ExoplanetVisualizer = () => {
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
-                  setPage(0); // Reset to first page when search changes
+                  setPage(0);
                 }}
                 placeholder="Enter planet name"
+                style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: '1px solid #4fc3f7' }}
               />
             </div>
           </form>
 
           {/* Clicked Planet Details */}
           {showDetails && (
-            <div>
-              <h5 className="text-success font-weight-bold mt-3">Name: {clickedPlanetName}</h5>
-              <h5 className="text-success font-weight-bold">Distance: {clickedPlanetDistance} light-years away from Earth.</h5>
+            <div style={{ background: 'rgba(76, 175, 80, 0.1)', padding: '10px', borderRadius: '4px', marginTop: '15px' }}>
+              <h5 style={{ color: '#69f0ae', fontWeight: 'bold', marginBottom: '5px' }}>Name: {clickedPlanetName}</h5>
+              <h5 style={{ color: '#69f0ae', fontWeight: 'bold' }}>Distance: {clickedPlanetDistance} light-years away from Earth.</h5>
             </div>
           )}
           {/* Go To Home Page Button */}
-          <Link className="btn btn-outline-success btn-sm mt-3" to="/">
-            Go To Home Page
+          <Link to="/app" style={{ textDecoration: 'none' }}>
+            <Button
+              variant="contained"
+              startIcon={<HomeIcon />}
+              size="small"
+              sx={{
+                mt: 3,
+                backgroundColor: '#ff4081',
+                color: '#fff',
+                border: 'none',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+                '&:hover': {
+                  backgroundColor: '#f50057',
+                },
+              }}
+            >
+              Home
+            </Button>
           </Link>
         </div>
       </div>
@@ -287,7 +257,7 @@ const ExoplanetVisualizer = () => {
           {solarSystemPlanets.map((planet, index) => (
             <Ring
               key={`orbit-${index}`}
-              args={[planet.distance - 0.05, planet.distance + 0.05, 64]}
+              args={[planet.distance - 0.05, planet.distance + 0.05, 64]} // Orbit thickness
               rotation={[Math.PI / 2, 0, 0]}
               position={[0, 0, 0]}
             >
@@ -307,26 +277,39 @@ const ExoplanetVisualizer = () => {
             />
           ))}
 
-          {/* Render Exoplanets */}
+          {/* Render Exoplanet Orbits */}
           {currentPageExoplanets.map((planet, index) => {
-            const position = getPlanetPosition(planet); // Default scale=0.1, baseDistance=30
+            const position = getPlanetPosition(planet);
 
             return (
-              <Exoplanet
-                key={`exoplanet-${index}`}
-                name={planet.name}
-                distance={planet.distance}
-                position={position}
-                texture={exoplanetTextureImage}
-                onClick={() => handleExoplanetClick(planet)}
-              />
+              <>
+                {/* Exoplanet Orbit */}
+                <Ring
+                  key={`orbit-exo-${index}`}
+                  args={[Math.abs(position[0]) - 0.05, Math.abs(position[0]) + 0.05, 64]} // Orbit thickness based on position
+                  rotation={[Math.PI / 2, 0, 0]}
+                  position={[0, 0, 0]}
+                >
+                  <meshBasicMaterial color="purple" side={THREE.DoubleSide} />
+                </Ring>
+
+                {/* Exoplanet */}
+                <Exoplanet
+                  key={`exoplanet-${index}`}
+                  name={planet.name}
+                  distance={planet.distance}
+                  position={position}
+                  texture={exoplanetTextureImage}
+                  onClick={() => handleExoplanetClick(planet)}
+                />
+              </>
             );
           })}
         </Suspense>
         <OrbitControls />
       </Canvas>
 
-      {/* Pagination Controls */}
+      {/* Updated Pagination Controls */}
       <div
         className="pagination-controls"
         style={{
@@ -336,40 +319,51 @@ const ExoplanetVisualizer = () => {
           transform: "translateX(-50%)",
           display: "flex",
           alignItems: "center",
-          gap: "10px",
+          gap: "15px",
           background: "rgba(0, 0, 0, 0.6)",
           padding: "10px 20px",
           borderRadius: "5px",
           zIndex: 1000,
-          color: "#fff",
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <button
+        <Button
+          variant="contained"
+          startIcon={<NavigateBeforeIcon />}
           onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
           disabled={page === 0}
-          className="btn btn-primary btn-sm"
-          style={{
-            opacity: page === 0 ? 0.5 : 1,
-            cursor: page === 0 ? "not-allowed" : "pointer",
+          sx={{
+            backgroundColor: '#4caf50',
+            '&:hover': {
+              backgroundColor: '#45a049',
+            },
+            '&.Mui-disabled': {
+              backgroundColor: 'rgba(76, 175, 80, 0.3)',
+            },
           }}
         >
           Previous
-        </button>
-        <span>
+        </Button>
+        <span style={{ color: '#fff', fontWeight: 'bold' }}>
           Page {page + 1} of {totalPages}
         </span>
-        <button
+        <Button
+          variant="contained"
+          endIcon={<NavigateNextIcon />}
           onClick={() => setPage((prev) => Math.min(prev + 1, totalPages - 1))}
           disabled={page + 1 >= totalPages}
-          className="btn btn-primary btn-sm mt-0"
-          style={{
-            opacity: page + 1 >= totalPages ? 0.5 : 1,
-            cursor: page + 1 >= totalPages ? "not-allowed" : "pointer",
+          sx={{
+            backgroundColor: '#2196f3',
+            '&:hover': {
+              backgroundColor: '#1e88e5',
+            },
+            '&.Mui-disabled': {
+              backgroundColor: 'rgba(33, 150, 243, 0.3)',
+            },
           }}
         >
           Next
-        </button>
+        </Button>
       </div>
     </div>
   );

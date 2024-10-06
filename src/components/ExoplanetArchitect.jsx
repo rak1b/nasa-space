@@ -1,5 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import Globe from "react-globe.gl";
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import DownloadIcon from "@mui/icons-material/Download";
 
 // Import planet textures
 import mercuryTextureImage from "../assets/images/textures/mercury.jpg";
@@ -16,13 +20,13 @@ const ExoplanetArchitect = () => {
   const [planetType, setPlanetType] = useState("earth");
   const [rotationSpeed, setRotationSpeed] = useState(0.5);
   const [showAtmosphere, setShowAtmosphere] = useState(true);
-  const [backgroundColor, setBackgroundColor] = useState("#000000");
+  const [backgroundColor, setBackgroundColor] = useState("#1c1c1c"); // Changed to a darker color
   const [showStars, setShowStars] = useState(true); // Toggle stars around the globe
   const globeEl = useRef();
   const [stars, setStars] = useState([]);
   const [planetName, setPlanetName] = useState("MyExoplanet");
 
-  // Get texture for the globe based on selected planeQt type
+  // Get texture for the globe based on selected planet type
   const getGlobeTexture = () => {
     switch (planetType) {
       case "mercury":
@@ -103,134 +107,181 @@ const ExoplanetArchitect = () => {
   };
 
   return (
-    <div className="container-fluid d-flex flex-column justify-content-center align-items-center vh-100">
-      <div className="row w-100 h-100">
-        {/* Left side: Form controls */}
-        <div className="col-md-6 d-flex flex-column justify-content-center align-items-center overflow-auto">
-          <h1 className="text-center mb-4">Design Your Exoplanet</h1>
-
-          <div className="row w-100">
-            <div className="col-md-12 mb-4">
-              <div className="control-panel p-4 bg-dark text-light rounded-lg shadow">
-                <h3 className="text-center mb-4">Planet Customization</h3>
-                
-                {/* Planet Texture Selector */}
-                <div className="mb-4">
-                  <h5 className="text-info">Choose Planet Texture</h5>
-                  <div className="planet-options d-flex flex-wrap justify-content-center">
-                    {[
-                      { name: "mercury", img: mercuryTextureImage },
-                      { name: "venus", img: venusTextureImage },
-                      { name: "earth", img: earthTextureImage },
-                      { name: "mars", img: marsTextureImage },
-                      { name: "jupiter", img: jupiterTextureImage },
-                      { name: "saturn", img: saturnTextureImage },
-                      { name: "uranus", img: uranusTextureImage },
-                      { name: "neptune", img: neptuneTextureImage },
-                      { name: "exoplanet", img: exoplanetTextureImage },
-                    ].map((planet) => (
-                      <div
-                        key={planet.name}
-                        className={`planet-option m-2 ${planetType === planet.name ? "selected" : ""}`}
-                        onClick={() => setPlanetType(planet.name)}
-                      >
-                        <img
-                          src={planet.img}
-                          alt={planet.name}
-                          style={{ width: "60px", height: "60px", borderRadius: "50%", cursor: "pointer" }}
-                        />
-                        <p className="text-center mt-1 text-capitalize">{planet.name}</p>
+    <div 
+      className="container-fluid d-flex flex-column justify-content-center align-items-center" 
+      style={{ 
+        width: '100vw',
+        height: '100vh',
+        background: `linear-gradient(135deg, rgba(240, 98, 146, 0.1), rgba(186, 104, 200, 0.1), rgba(100, 181, 246, 0.1), rgba(77, 182, 172, 0.1), rgba(255, 183, 77, 0.1), rgba(129, 199, 132, 0.1)), rgba(1, 5, 15, 0.95)`,
+        color: '#FFFFFF',
+        overflow: 'hidden'
+      }}
+    >
+      <div className="row w-100 justify-content-center" style={{ maxHeight: '95vh', overflowY: 'auto' }}>
+        <div className="col-md-11">
+          <div className="card text-white bg-transparent mb-3" >
+            <div className="card-body" style={{ padding: '1rem' }}>
+              <h1 className="text-center mb-3" style={{ fontSize: '1.8rem', fontWeight: "bold", color: "#81d4fa" }}>Design Your Exoplanet</h1>
+              
+              <div className="row">
+                {/* Left side: Form controls */}
+                <div className="col-md-6">
+                  <div className="control-panel p-4 text-light rounded-lg shadow" >
+                    <h3 className="text-center mb-4" style={{ color: "#81d4fa", fontWeight: "bold" }}>Planet Customization</h3>
+                    
+                    {/* Planet Texture Selector */}
+                    <div className="mb-4">
+                      <h5 className="text-info">Choose Planet Texture</h5>
+                      <div className="planet-options d-flex flex-wrap justify-content-center">
+                        {[
+                          { name: "mercury", img: mercuryTextureImage },
+                          { name: "venus", img: venusTextureImage },
+                          { name: "earth", img: earthTextureImage },
+                          { name: "mars", img: marsTextureImage },
+                          { name: "jupiter", img: jupiterTextureImage },
+                          { name: "saturn", img: saturnTextureImage },
+                          { name: "uranus", img: uranusTextureImage },
+                          { name: "neptune", img: neptuneTextureImage },
+                          { name: "exoplanet", img: exoplanetTextureImage },
+                        ].map((planet) => (
+                          <div
+                            key={planet.name}
+                            className={`planet-option m-2 ${planetType === planet.name ? "selected" : ""}`}
+                            onClick={() => setPlanetType(planet.name)}
+                            style={{
+                              border: planetType === planet.name ? "3px solid #81d4fa" : "none",
+                              borderRadius: "50%",
+                              padding: "5px",
+                            }}
+                          >
+                            <img
+                              src={planet.img}
+                              alt={planet.name}
+                              style={{ width: "60px", height: "60px", borderRadius: "50%", cursor: "pointer" }}
+                            />
+                            {/* <p className="text-center mt-1 text-capitalize text-white">{planet.name}</p> */}
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    </div>
+                    
+                    {/* Planet Name Input and Rotation Speed Control */}
+                    <div className="row mb-4">
+                      <div className="col-md-6">
+                        <h5 className="text-info">Planet Name</h5>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={planetName}
+                          onChange={(e) => setPlanetName(e.target.value)}
+                          placeholder="Enter planet name"
+                          style={{ backgroundColor: "#222", borderColor: "#4fc3f7", color: "#81d4fa" }}
+                        />
+                      </div>
+                      <div className="col-md-6">
+                        <h5 className="text-info">Rotation Speed</h5>
+                        <div className="d-flex align-items-center">
+                          <input
+                            type="range"
+                            min="0.1"
+                            max="2.0"
+                            step="0.1"
+                            value={rotationSpeed}
+                            onChange={(e) => setRotationSpeed(parseFloat(e.target.value))}
+                            className="form-range flex-grow-1 me-3"
+                            style={{ backgroundColor: "#81d4fa" }}
+                          />
+                          <span className="badge bg-primary">{rotationSpeed.toFixed(1)}x</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Toggle Controls and Background Color Picker */}
+                    <div className="row mb-4">
+                      <div className="col-md-6">
+                        <h5 className="text-info">Toggle Features</h5>
+                        <div className="d-flex justify-content-between">
+                          <button
+                            className={`btn ${showAtmosphere ? 'btn-success' : 'btn-outline-light'}`}
+                            onClick={() => setShowAtmosphere(!showAtmosphere)}
+                          >
+                            {showAtmosphere ? "Atmosphere On" : "Atmosphere Off"}
+                          </button>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <h5 className="text-info">Background Color</h5>
+                        <div className="d-flex align-items-center">
+                          <input
+                            type="color"
+                            value={backgroundColor}
+                            onChange={(e) => setBackgroundColor(e.target.value)}
+                            className="form-control form-control-color me-3"
+                          />
+                          <span className="text-white">{backgroundColor}</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                
-                {/* Planet Name Input */}
-                <div className="mb-4">
-                  <h5 className="text-info">Planet Name</h5>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={planetName}
-                    onChange={(e) => setPlanetName(e.target.value)}
-                    placeholder="Enter planet name"
-                  />
-                </div>
-                
-                {/* Rotation Speed Control */}
-                <div className="mb-4">
-                  <h5 className="text-info">Rotation Speed</h5>
-                  <div className="d-flex align-items-center">
-                    <input
-                      type="range"
-                      min="0.1"
-                      max="2.0"
-                      step="0.1"
-                      value={rotationSpeed}
-                      onChange={(e) => setRotationSpeed(parseFloat(e.target.value))}
-                      className="form-range flex-grow-1 me-3"
+
+                {/* Right side: Globe visualization */}
+                <div className="col-md-6 d-flex flex-column justify-content-center align-items-center">
+                  <h2 className="text-center mb-4" style={{ color: "#81d4fa" }}>{planetName}</h2>
+                  <div className="globe-container position-relative">
+                    <div className="twinkling-star"></div>
+                    <Globe
+                      ref={globeEl}
+                      globeImageUrl={getGlobeTexture()}
+                      width={400}
+                      height={400}
+                      backgroundColor={backgroundColor}
+                      atmosphereColor="#ffffff"
+                      showAtmosphere={showAtmosphere}
+                      pointsData={stars}
+                      pointColor={() => "#ffffff"}
+                      pointAltitude={0.001}
+                      pointRadius={0.1}
                     />
-                    <span className="badge bg-primary">{rotationSpeed.toFixed(1)}x</span>
+                    {/* Download and Home buttons */}
+                    <div className="position-absolute d-flex" style={{ bottom: '10px', left: '50%', transform: 'translateX(-50%)' }}>
+                      <Button
+                        variant="contained"
+                        startIcon={<DownloadIcon />}
+                        size="small"
+                        onClick={downloadGlobeImage}
+                        sx={{
+                          backgroundColor: '#4caf50',
+                          color: '#fff',
+                          marginRight: '1rem',
+                          '&:hover': {
+                            backgroundColor: '#45a049',
+                          },
+                        }}
+                      >
+                        Download
+                      </Button>
+                      <Link to="/" style={{ textDecoration: 'none' }}>
+                        <Button
+                          variant="contained"
+                          startIcon={<HomeIcon />}
+                          size="small"
+                          sx={{
+                            backgroundColor: '#ff4081',
+                            color: '#fff',
+                            '&:hover': {
+                              backgroundColor: '#f50057',
+                            },
+                          }}
+                        >
+                          Home
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-                
-                {/* Toggle Controls */}
-                <div className="mb-4">
-                  <h5 className="text-info">Toggle Features</h5>
-                  <div className="d-flex justify-content-between">
-                    <button
-                      className={`btn ${showAtmosphere ? 'btn-success' : 'btn-outline-light'}`}
-                      onClick={() => setShowAtmosphere(!showAtmosphere)}
-                    >
-                      {showAtmosphere ? "Atmosphere On" : "Atmosphere Off"}
-                    </button>
-                  </div>
-                </div>
-                
-                {/* Background Color Picker */}
-                <div className="mb-4">
-                  <h5 className="text-info">Background Color</h5>
-                  <div className="d-flex align-items-center">
-                    <input
-                      type="color"
-                      value={backgroundColor}
-                      onChange={(e) => setBackgroundColor(e.target.value)}
-                      className="form-control form-control-color me-3"
-                    />
-                    <span>{backgroundColor}</span>
-                  </div>
-                </div>
-                
-                {/* Download Globe Image */}
-               
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Right side: Globe visualization */}
-        <div className="col-md-6 d-flex flex-column justify-content-center align-items-center">
-          <h1 className="text-center mb-4">{planetName}</h1>
-          <div className="globe-container position-relative">
-            <div className="twinkling-star"></div>
-            <Globe
-              ref={globeEl}
-              globeImageUrl={getGlobeTexture()}
-              width={500}
-              height={500}
-              backgroundColor={backgroundColor}
-              atmosphereColor="#ffffff" // Atmosphere color
-              showAtmosphere={showAtmosphere} // Toggle atmosphere
-              pointsData={stars}
-              pointColor={() => "#ffffff"}
-              pointAltitude={0.001}
-              pointRadius={0.1}
-            />
-          </div>
-          <div className="mt-4">
-            <button className="btn btn-lg btn-outline-info" onClick={downloadGlobeImage}>
-              <i className="fas fa-download me-2"></i>Download Globe Image
-            </button>
           </div>
         </div>
       </div>
