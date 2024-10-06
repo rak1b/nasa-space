@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Container, Box } from '@mui/material';
-import video1 from '../assets/video/overview.webm';
+import video1 from '../assets/video/overview.mp4';
 const ProjectOverview = () => {
   return (
     <Box

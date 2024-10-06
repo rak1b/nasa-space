@@ -61,29 +61,38 @@ function LandingPage() {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '80%',
+          width: '90%', // Increased from 80% to 90%
           maxWidth: 600,
           bgcolor: 'background.paper',
           boxShadow: 24,
-          p: 4,
+          p: { xs: 2, sm: 4 }, // Responsive padding
           borderRadius: 4,
         }}>
-          <CardContent sx={{ textAlign: 'center', padding: '40px' }}>
+          <CardContent sx={{ textAlign: 'center', padding: { xs: '20px', sm: '40px' } }}> // Responsive padding
             <Box
               component="img"
               src={`${process.env.PUBLIC_URL}/female-astronaut-cartoon.png`}
               alt="Female Astronaut"
               sx={{
-                width: '250px',
-                height: '250px',
+                width: { xs: '150px', sm: '250px' }, // Responsive image size
+                height: { xs: '150px', sm: '250px' }, // Responsive image size
                 objectFit: 'contain',
-                marginBottom: '30px',
+                marginBottom: { xs: '15px', sm: '30px' }, // Responsive margin
               }}
             />
-            <Typography variant="h3" component="div" gutterBottom sx={{ ...silkscreenFont, color: '#333', marginBottom: '20px' }}>
+            <Typography variant="h3" component="div" gutterBottom sx={{ 
+              ...silkscreenFont, 
+              color: '#333', 
+              marginBottom: '20px',
+              fontSize: { xs: '1.8rem', sm: '2.5rem' } // Responsive font size
+            }}>
               Hello, Explorer!
             </Typography>
-            <Typography variant="h6" sx={{ color: '#666', marginBottom: '30px' }}>
+            <Typography variant="h6" sx={{ 
+              color: '#666', 
+              marginBottom: '30px',
+              fontSize: { xs: '1rem', sm: '1.25rem' } // Responsive font size
+            }}>
               I'm Xara, your cosmic companion! Together, we'll journey through the stars and uncover the mysteries of distant worlds. Are you ready to explore the wonders of exoplanets?
             </Typography>
             <Button
@@ -91,8 +100,8 @@ function LandingPage() {
               onClick={handleStartExploring}
               sx={{
                 ...silkscreenFont,
-                fontSize: '1.2rem',
-                padding: '12px 24px',
+                fontSize: { xs: '1rem', sm: '1.2rem' }, // Responsive font size
+                padding: { xs: '10px 20px', sm: '12px 24px' }, // Responsive padding
                 borderRadius: '50px',
                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                 transition: 'all 0.3s ease',
