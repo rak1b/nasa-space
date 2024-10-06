@@ -65,10 +65,10 @@ function LandingPage() {
           maxWidth: 600,
           bgcolor: 'background.paper',
           boxShadow: 24,
-          p: { xs: 2, sm: 4 }, // Responsive padding
+          p: { xs: 2, sm: 4 }, 
           borderRadius: 4,
         }}>
-          <CardContent sx={{ textAlign: 'center', padding: { xs: '20px', sm: '40px' } }}> // Responsive padding
+          <CardContent sx={{ textAlign: 'center', padding: { xs: '20px', sm: '40px' } }}> 
             <Box
               component="img"
               src={`${process.env.PUBLIC_URL}/female-astronaut-cartoon.png`}
@@ -101,7 +101,7 @@ function LandingPage() {
               sx={{
                 ...silkscreenFont,
                 fontSize: { xs: '1rem', sm: '1.2rem' }, // Responsive font size
-                padding: { xs: '10px 20px', sm: '12px 24px' }, // Responsive padding
+                padding: { xs: '10px 20px', sm: '12px 24px' }, 
                 borderRadius: '50px',
                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                 transition: 'all 0.3s ease',
