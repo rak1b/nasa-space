@@ -216,6 +216,7 @@ const MoreExoplanet = () => {
                     sx={{ backgroundColor: '#ff4081', '&:hover': { backgroundColor: '#e91e63' } }}
                     startIcon={<QuizIcon />}
                     onClick={handleQuizStart}
+                    aria-label="Take quiz"
                   >
                     Take a Quiz
                   </Button>

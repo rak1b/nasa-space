@@ -12,7 +12,7 @@ function NumberOfExoplanet() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100%',
-        color: 'white',
+        color: '#00FFFF', // Bright cyan color
         overflow: 'hidden', // Ensures the content doesn't overflow the section
       }}
     >
@@ -35,11 +35,11 @@ function NumberOfExoplanet() {
           padding: '2rem', // Add padding to ensure proper spacing
         }}
       >
-        <h1 className="display-4 mb-4">Over 5,500 Exoplanets Discovered!</h1>
+        <h1 className="display-6 mb-4 lead">Over 5,500 Exoplanets Discovered!</h1>
         <p className="lead mb-5">
           Embark on a journey to explore the vast universe beyond our Solar System.
         </p>
-        <Link className="btn btn-primary btn-lg" to="/exoplanets">
+        <Link className="btn btn-primary btn-lg" to="/exoplanet-explorer">
           See All Exoplanets
         </Link>
       </div>
