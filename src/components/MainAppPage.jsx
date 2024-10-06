@@ -151,7 +151,7 @@ const MainAppPage = () => {
         </Fade>
 
         <Fade in={!showWelcome} timeout={1000}>
-          <Stack direction="row" spacing={4} useFlexGap flexWrap="wrap" justifyContent="center">
+          <Stack direction="row" spacing={2} useFlexGap flexWrap="wrap" justifyContent="center">
             <Box sx={{ width: '100%', textAlign: 'center', mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               {isEditing ? (
                 <>
@@ -178,7 +178,15 @@ const MainAppPage = () => {
               )}
             </Box>
             {navItems.map((item, index) => (
-              <Box key={item.path} flex="1 1 auto" minWidth={{ xs: '100%', sm: '45%', md: '30%' }} maxWidth="300px">
+              <Box 
+                key={item.path} 
+                sx={ {
+                  flex: '1 1 auto',
+                  minWidth: { xs: '100%', sm: '45%', md: '30%' },
+                  maxWidth: { xs: '100%', sm: '300px' },
+                  mb: 2, // Add margin bottom for spacing
+                }}
+              >
                 <Link to={item.path} style={{ textDecoration: 'none' }}>
                   <Card
                     sx={{
@@ -191,22 +199,29 @@ const MainAppPage = () => {
                       borderRadius: '15px',
                       overflow: 'hidden',
                       position: 'relative',
-                      height: '200px',
+                      height: { xs: '120px', sm: '180px' }, // Reduced height
                     }}
                   >
-                    <CardContent sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <CardContent sx={{ 
+                      height: '100%', 
+                      display: 'flex', 
+                      flexDirection: 'column', 
+                      justifyContent: 'center', 
+                      padding: { xs: '12px', sm: '20px' } // Reduced padding
+                    }}>
                       <Box display="flex" flexDirection="column" alignItems="center" position="relative" zIndex="1">
-                        {React.cloneElement(item.icon, { style: { color: '#ffffff', fontSize: '4rem' } })}
+                        {React.cloneElement(item.icon, { style: { color: '#ffffff', fontSize: { xs: '2.5rem', sm: '3.5rem' } } })}
                         <Typography 
-                          variant="h5" 
+                          variant="h6" // Changed from h5 to h6
                           align="center" 
-                          mt={2} 
+                          mt={1} // Reduced top margin
                           sx={{ 
                             color: '#ffffff',
                             fontWeight: 700,
                             fontFamily: "'Baloo Bhai 2', cursive",
                             letterSpacing: '0.5px',
-                            textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
+                            textShadow: '1px 1px 2px rgba(0,0,0,0.3)',
+                            fontSize: { xs: '1rem', sm: '1.25rem' }, // Reduced font size
                           }}
                         >
                           {item.title}

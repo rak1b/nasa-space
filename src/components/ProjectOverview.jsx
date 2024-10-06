@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, Container, Box } from '@mui/material';
 import video1 from '../assets/video/overview.mp4';
+
 const ProjectOverview = () => {
   return (
     <Box
@@ -9,12 +10,11 @@ const ProjectOverview = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'linear-gradient(135deg, rgba(240, 98, 146, 0.1), rgba(186, 104, 200, 0.1), rgba(100, 181, 246, 0.1), rgba(77, 182, 172, 0.1), rgba(255, 183, 77, 0.1), rgba(129, 199, 132, 0.1)), rgba(1, 5, 15, 0.95)', // Gradient background
+        background: 'linear-gradient(135deg, rgba(240, 98, 146, 0.1), rgba(186, 104, 200, 0.1), rgba(100, 181, 246, 0.1), rgba(77, 182, 172, 0.1), rgba(255, 183, 77, 0.1), rgba(129, 199, 132, 0.1)), rgba(1, 5, 15, 0.95)',
       }}
     >
       <Container maxWidth="md">
         <Box my={6} textAlign="center">
-          {/* Gradient Text Heading */}
           <Typography
             variant="h2"
             component="h1"
@@ -32,7 +32,7 @@ const ProjectOverview = () => {
 
           <Box mb={4} sx={{
             width: '80%',
-            maxHeight: '60vh', // Add this line
+            maxHeight: '60vh',
             margin: '0 auto',
             boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
             borderRadius: '8px',
@@ -40,10 +40,10 @@ const ProjectOverview = () => {
           }}>
             <video
               width="100%"
-              height="100%" // Change this from 'auto' to '100%'
+              height="100%"
               controls
-              poster="/path/to/your/video-poster.jpg"
-              style={{ objectFit: 'contain' }} // Add this line
+              poster={`${process.env.PUBLIC_URL}/overview.png`}
+              style={{ objectFit: 'contain' }}
             >
               <source src={video1} type="video/mp4" />
               Your browser does not support the video tag.
